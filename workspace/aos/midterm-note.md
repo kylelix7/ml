@@ -21,6 +21,7 @@
  - exokernel detects the pf
  - exokernel uses PE data structure for the library OS to make upcall to appropriate entry point in lib OS that handle pf
  - lib OS runs page relacement algo if needed
+ - lib OS calls exokernel to delte the victim page
  - lib OS issue IO via exokernel to get faulting page from disk to PFN
  - upon io completion, exokernel upcalls the lib OS via entry point in PE data structure
  - lib OS calls exokernel to install translation in TLB
