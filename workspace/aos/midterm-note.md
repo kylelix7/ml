@@ -1,3 +1,4 @@
+
 ## spin (strongly typed interface, dynamically bind implementation)
 
 ### pros
@@ -71,6 +72,16 @@ How para virtualized performs better in IO
  - Xenolinux gets the response via **polling the I/O ring**
  - Xenolinux completes what it meeds to do and places the process back on the ready queue
 
+### CMM - coordinated memory management
+ 1. Each VM has entry point called "report memory status"
+ 2. Each VM installs balloon driver
+ 3. Hypervisor calls "report memory status" on each donor vm
+ 4. each donor vm reports "Actual memory in use"
+ 5. hypervisor updates "memory-infor" for each donor vm
+ 6. calculate how much memory to ask from each donor vm based on the "memory-info"
+ 7. hypervisor instructs the balloon driver in each of the donor vm based to inflate commensurate with the decision in step 6
+ 8. once all drivers in donor vms have completed the inflate command, the hypervisor instructrs the ballon driver in the requesting vm to deflate the ballon by the amount of requested memory.
+ 
 ## Ballooning
  - hypervisor asks balloon drivers inflate for guest OS which are not actively using all the memory
  - hypervisor asks ballon driver to deflate for guest os which is under memory pressure
