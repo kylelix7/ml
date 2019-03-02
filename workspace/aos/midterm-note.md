@@ -146,8 +146,8 @@ How para virtualized performs better in IO
   
  ## things needed to exploit multi cores on multi-core cpu
   - user level thread libs to spawn a process upon each thread creation
-  - os provide mechanism for user level thread library to register handler with os
-  - os upcalls the associated user level threads library handler when a process make a *blocking system call* if its parent is a thread library
+  - os provide **mechanism** for user level thread library to **register handler with os**
+  - os upcalls the associated user level threads library handler when a process make a **blocking system call** if its parent is a thread library
  
 # LRPC
  steps in executing cross-domain calls when client and server are on different processors
