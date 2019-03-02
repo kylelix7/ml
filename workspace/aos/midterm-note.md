@@ -7,7 +7,7 @@
  * (key) applications can dynamically bind to different implementations of the interface functions providing flexibility
 
 ### cons
- - driver that need hardware access need to step out the language protection
+ - driver that need hardware access need to step out the **language protection/logical protection domain**
  - difficult to force vendor to use the same specific language
 
 
@@ -17,6 +17,18 @@
  * SPIN extend the logical protection domain which follows modula 3, strongly typed language. it enforces compile time checking and run time verification
  - exokernel, only selected code fragments are downloaded to kernel by lib OS thru security binding
  * SPIN, the entire OS is in same hardware address space
+
+## L3
+ - microkernel-based design need not be performance deficient
+ - with the right abstraction in microkernel-based OS can be performant as monolithic kernel
+ - SPIN and exo focus on portability, while L3 focus on performance
+ 
+How exokernel handles system call
+ - syscall traps to exokernel
+ - exo identifies the lib OS responsible for this syscall using **time slice vector**
+ - exo use **PE (processor environment) data structure** associated with this lib os to get syscall context, which is the entry point
+ - exo upcalls the the lib OS using this entrypoint
+ - lib OS services the system call
 
 ### page fault handling in exokernel (mention PE data structure for entry point of handler)
  - exokernel detects the pf
