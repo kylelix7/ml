@@ -51,12 +51,25 @@ pysical page vs. machine page
 size of 1 shadow pt is proportional to the # of running processes in the guest os
 number of shadow tables is the same as the number of guest os running
 
+## para virtualization
 How para virtualized performs better in IO 
  - hypervisor provide guest os clean and simple device abstraction
  - guest os can effiently transfer data without overhead of multiple copying thru APIs
  - hypercalls make control transfers efficient 
  - guest have some control in event delivery thru hypercall
 
+### Xen
+ - xenolinux runs on top of Xen
+ - it installs a fast handler in Xen so that system calls by a process executing on top of XenoLinux gets directly handled by XenoLinux without a level of indirection from Xen
+ - Xenolinux uses an I/O ring to convey disk I/O requests to Xen, and gets response back from Xen via I/O ring
+ 
+ - via fast handler, xenolinux fields the fopen system call from Xen
+ - Xenolinux populates **the I/O ring data structure with the details** of the fopen call
+ - Xenolinux makes the I/O request by using a **hypercall**
+ - **Xen** service the request
+ - Xen fills the response into the **I/O ring data structure**
+ - Xenolinux gets the response via **polling the I/O ring**
+ - Xenolinux completes what it meeds to do and places the process back on the ready queue
 
 ## Ballooning
  - hypervisor asks balloon drivers inflate for guest OS which are not actively using all the memory
@@ -81,8 +94,8 @@ How para virtualized performs better in IO
 # LRPC
  steps in executing cross-domain calls when client and server are on different processors
  - client cp arguments to argument stack
- - client trap in kernel and present binding boject for a call
- - kernel validates client request and look up entry point into the server using processor descriptor table
+ - client *trap* in kernel and **present binding boject for a call**
+ - kernel *validates* client request and look up *entry point* into the server using **processor descriptor table**
  - kernel redirect the request to processor preloaded with the server
  - server copies the arguments on its e-stack and return result to client using argument stack
  - server trap and signal completion
