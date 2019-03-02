@@ -105,6 +105,13 @@ How para virtualized performs better in IO
 
  ## barrier
  tournament and dissemination barriers do not rely on global shared data struture. each process know locally when it's done with a barrier and is in the next phase of completion. Thus each processor can locally flip its sense flag, and use this local information in its communication with the other processors.
+ ### dissemination
+  - no hierachy
+  - no pair wise sync
+  - works independently to sent out message
+  - all realize barrier is complete when receive log2(N) messages from peers
+  - total amount O(Nlog2N)
+  - works for NCC and MP machines in addition to SM
 
  ## ticket lock
   - lock requestor wait for its own ticket to be served. it's FCFS order. 
@@ -119,8 +126,8 @@ How para virtualized performs better in IO
 # LRPC
  steps in executing cross-domain calls when client and server are on different processors
  - client cp arguments to argument stack
- - client *trap* in kernel and **present binding boject for a call**
- - kernel *validates* client request and look up *entry point* into the server using **processor descriptor table**
+ - client **trap** in kernel and **present binding boject for a call**
+ - kernel **validates** client request and look up *entry point* into the server using **processor descriptor table**
  - kernel redirect the request to processor preloaded with the server
  - server copies the arguments on its e-stack and return result to client using argument stack
  - server trap and signal completion
