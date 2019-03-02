@@ -2,9 +2,9 @@
 ## spin (strongly typed interface, dynamically bind implementation)
 
 ### pros
- - protection domain enforced by strongly typed language. no cheating
- * entire OS in the same hardware address space. have shared address space to prevent border crossing
- * (key) applications can dynamically bind to different implementations of the interface functions providing flexibility
+ - protection domain enforced by **strongly typed language**. no cheating
+ * **entire OS in the same hardware address space**. have shared address space to prevent border crossing
+ * (key) applications can **dynamically bind to different implementations of the interface functions** providing flexibility
 
 ### cons
  - driver that need hardware access need to step out the **language protection/logical protection domain**
