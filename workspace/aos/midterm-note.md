@@ -74,10 +74,10 @@ number of shadow tables is the same as the number of guest os running
 
 ## para virtualization
 How para virtualized performs better in IO 
- - hypervisor provide guest os clean and simple device abstraction
- - guest os can effiently transfer data without overhead of multiple copying thru APIs
- - hypercalls make control transfers efficient 
- - guest have some control in event delivery thru hypercall
+ - hypervisor provide guest os **clean and simple device abstraction**
+ - guest os can effiently **transfer data without overhead of multiple copying thru APIs**
+ - **hypercalls** make control transfers efficient 
+ - **guest have some control in event delivery** thru hypercall
 
 ### Xen
  - xenolinux runs on top of Xen
