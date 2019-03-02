@@ -88,6 +88,15 @@ How para virtualized performs better in IO
 
 
 # Parallel systems:
+ ## latency
+  time it takes to get teh lock with **no contention**
+  
+ ## contention
+   the interconnection network traffic generated unpon lock release by the competing process that are spinning to acquire the lock
+   
+ ## waiting time
+  this is a property of an application ( e.g. duration of critical section ) and does not have anythin to acquire the lock 
+ 
  ## memory consistency: 
   it is a contract between hardware and software to reason about the behavior of a multi-thread program
 
@@ -97,6 +106,11 @@ How para virtualized performs better in IO
  ## barrier
  tournament and dissemination barriers do not rely on global shared data struture. each process know locally when it's done with a barrier and is in the next phase of completion. Thus each processor can locally flip its sense flag, and use this local information in its communication with the other processors.
 
+ ## ticket lock
+  - lock requestor wait for its own ticket to be served. it's FCFS order. 
+  - it does not meet the goal of a scalable mutual exclusion lock in large-scale multiprocessor, because every lock release results in an **update to shared variable**
+  - this results in contention in the network because all waiting processors need to get the up to date new value of L->now_serving
+  
  ## things needed to exploit multi cores on multi-core cpu
   - user level thread libs to spawn a process upon each thread creation
   - os provide mechanism for user level thread library to register handler with os
