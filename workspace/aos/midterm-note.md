@@ -13,8 +13,8 @@
 
 ## exokernel (allow arbitrary code downloaded to kernel, PE data structure store entriy point of handler, one PE structure per lib OS)
 ### compared to SPIN
- - exokernel exposes the hardware to the lib OS thru a secure binding which allows the lib OS to download arbitrary code into kernel and execute it
- * SPIN extend the logical protection domain which follows modula 3, strongly typed language. it enforces compile time checking and run time verification
+ - exokernel **exposes the hardware to the lib OS** thru a **secure binding** which allows the lib OS to download arbitrary code into kernel and execute it
+ * SPIN extend the logical protection domain which follows modula 3, strongly typed language. it enforces **compile time checking and run time verification**
  - exokernel, only selected code fragments are downloaded to kernel by lib OS thru security binding
  * SPIN, the entire OS is in same hardware address space
 
