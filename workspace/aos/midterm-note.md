@@ -136,7 +136,7 @@ How para virtualized performs better in IO
 
 ### MSC barrier
  - wakeup tree gives unique and static location for each proessor to signal barrier completion
- - spinning on stacally allocated local word-length variable by packing data for **four processors** reduces bus contention
+ - spinning on stacally allocated local word-length variable by **packing data** for four processors **reduces bus contention**
  - 4-ary tree construction shows the best performance on sequent symmetry used in the experimentation in MCS paper
  
  ## ticket lock
