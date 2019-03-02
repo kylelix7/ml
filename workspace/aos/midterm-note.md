@@ -83,13 +83,15 @@ How para virtualized performs better in IO
  - xenolinux runs on top of Xen
  - it installs a **fast handler in Xen** so that system calls by a process executing on top of **XenoLinux gets directly handled by XenoLinux without a level of indirection from Xen**
  - Xenolinux uses an **I/O ring to convey disk I/O requests to Xen, and gets response back from Xen via I/O ring**
+ 
+ how xen handles IO
  - via fast handler, xenolinux fields the fopen system call from Xen
  - Xenolinux populates **the I/O ring data structure with the details** of the fopen call
  - Xenolinux makes the I/O request by using a **hypercall**
  - **Xen** service the request
  - Xen fills the response into the **I/O ring data structure**
  - Xenolinux gets the response via **polling the I/O ring**
- - Xenolinux completes what it meeds to do and places the process back on the ready queue
+ - Xenolinux completes what it needs to do and places the process back on the ready queue
 
 ### CMM - coordinated memory management
  1. Each VM has entry point called "report memory status"
